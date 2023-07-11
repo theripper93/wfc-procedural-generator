@@ -2,7 +2,7 @@
 
 
 export class WaveFunctionSolver{
-    constructor (dataset = sampleDataset, width, height, depth) {
+    constructor (dataset, width, height, depth) {
         this.dataset = dataset;
         this.width = width;
         this.height = height;
@@ -75,6 +75,62 @@ export class WaveFunctionSolver{
         return this;
     }
 
+    static learnPrefabs(tokens = canvas.tokens.controlled, blockSize = 1) {
+        const dataset = [];
+        for (const token of tokens) {
+            const document = token.document;
+            const asset = document.name;
+            const rotation = document.rotation;
+            const weight = 0;
+            const center = token.center;
+            const offset = blockSize * canvas.grid.size;
+            const neighbors = {
+                left: tokens.find(t => t.center.x == center.x - offset && t.center.y == center.y),
+                right: tokens.find(t => t.center.x == center.x + offset && t.center.y == center.y),
+                up: tokens.find(t => t.center.x == center.x && t.center.y == center.y - offset),
+                down: tokens.find(t => t.center.x == center.x && t.center.y == center.y + offset),
+            }
+            const tokenDataset = dataset.find(d => d.asset == asset && d.rotation == rotation) ?? {
+                id: asset + rotation, asset, rotation, weight, sockets: {
+                    left: [],
+                    right: [],
+                    up: [],
+                    down: [],
+                    top: [],
+                    bottom: [],
+                },
+                allow: {
+                    left: [],
+                    right: [],
+                    up: [],
+                    down: [],
+                    top: [],
+                    bottom: [],
+                }
+            };
+            for (const [key, value] of Object.entries(neighbors)) {
+                if (!value) continue;
+                const neighborData = {
+                    asset: value?.document.name,
+                    rotation: value?.document.rotation,
+                }
+                const socketkey = neighborData.asset + neighborData.rotation;
+                if (!tokenDataset.sockets[key].includes(socketkey)) tokenDataset.sockets[key].push(socketkey);
+                if (!tokenDataset.allow[key].includes(socketkey)) tokenDataset.allow[key].push(socketkey);
+            }
+            if(!dataset.includes(tokenDataset)) dataset.push(tokenDataset);
+        }
+        for (const tokenDataset of dataset) {
+            for (const token of tokens) {
+                const socketKey = tokenDataset.asset + tokenDataset.rotation;
+                const tokenKey = token.document.name + token.document.rotation;
+                if(socketKey == tokenKey) tokenDataset.weight++;
+            }
+        }
+        ui.notifications.info("Wave Function Collapse | Learned " + dataset.length + " tiles.");
+        return dataset;
+    }
+
     isCollapsed() {
         let nSolved = 0;
         this.grid.traverse((x, y, z, cell) => {
@@ -100,13 +156,14 @@ export class WaveFunctionSolver{
             if (failed < this._failedTiles) {
                 this._failedTiles = failed;
                 this._bestBuildQueue = this._buildQueue;
+                this._bestResult = this.grid;
             }
             console.log("Attempt " + this._currentIteration + " failed " + failed + " tiles");
             if (failed === 0) break;
         }
         if (this._build) this.build();
         ui.notifications.info("Wave Function Collapse | Collapsed in " + this._currentIteration + " iterations")
-        return this;
+        return this._bestResult;
     }
 
     iterate() {
@@ -219,64 +276,6 @@ export class WaveFunctionSolver{
         //this.grid.traverse(this.createTile.bind(this));
     }
 
-    async createTile(x, y, z, cell) {
-        if (!cell.value?.asset) return;
-        const tile = cell.value;
-        const rotation = tile.rotation;
-        const assets = Array.isArray(tile.asset) ? tile.asset : [tile.asset];
-        for (const asset of assets) {            
-            const tileData = {
-                x: x * canvas.grid.size + this._build.x,
-                y: y * canvas.grid.size + this._build.y,
-                width: canvas.grid.size,
-                height: canvas.grid.size,
-                rotation: rotation,
-                flags: {
-                    "levels-3d-preview": {
-                        model3d: asset,
-                        depth: canvas.grid.size,
-                        autoCenter: true,
-                    }
-                },
-            }
-            this._buildQueue.push(tileData);
-        }
-    }
-
-    static fromDialog(offset = {x: canvas.scene.dimensions.sceneX, y: canvas.scene.dimensions.sceneY}, width, height, depth) {
-        const wfc = new WaveFunctionSolver(undefined, width, height, depth);
-        let preventClose = false;
-        const d = new Dialog({
-            title: "Wave Function Collapse",
-            content: `Select the tiles you want to learn from, then click Learn Pattern. After that, click Collapse to generate the tiles.`,
-            buttons: {
-                learn: {
-                    label: '<i class="fas fa-graduation-cap"></i> Learn Pattern',
-                    callback: () => {
-                        preventClose = true;
-                        wfc.learn();
-                    }
-                },
-                collapse: {
-                    label: '<i class="fa-regular fa-arrows-minimize"></i> Collapse',
-                    callback: () => {
-                        wfc.collapse(offset);
-                    }
-                },
-            },
-            default: "learn",
-        })
-        const oldClose = d.close;
-        d.close = async function () {
-            if (preventClose) {
-                preventClose = false;
-                return;
-            }
-            await oldClose.bind(this)();
-        }
-        d.render(true);
-    }
-
 }
 
 
@@ -332,263 +331,3 @@ class Grid3{
         }
     }
 }
-
-const sampleDataset = [
-    {
-        id: "WallHT",
-        exclude: {
-            up: ["WallHT"],
-            down: ["WallHT"],
-        },
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-straight.glb",
-        rotation: 0,
-        weight: 1,
-        "sockets": {
-            left: ["wHT"],
-            right: ["wHT"],
-            up: [0, "bookcase"],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "WallHB",
-        exclude: {
-            up: ["WallHB"],
-            down: ["WallHB"],
-        },
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-straight.glb",
-        rotation: 180,
-        weight: 1,
-        "sockets": {
-            left: ["wHB"],
-            right: ["wHB"],
-            up: [0],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "WallVR",
-        exclude: {
-            left: ["WallVR"],
-            right: ["WallVR"],
-        },
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-straight.glb",
-        rotation: 90,
-        weight: 1,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: ["wVR"],
-            down: ["wVR"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "WallVL",
-        exclude: {
-            left: ["WallVL"],
-            right: ["WallVL"],
-        },
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-straight.glb",
-        rotation: 270,
-        weight: 1,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: ["wVL"],
-            down: ["wVL"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerRD",
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-corner.glb",
-        rotation: 0,
-        weight: 0.2,
-        "sockets": {
-            left: [0],
-            right: ["wHT"],
-            up: [0],
-            down: ["wVL"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerLD",
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-corner.glb",
-        rotation: 90,
-        weight: 0.2,
-        "sockets": {
-            left: ["wHT"],
-            right: [0],
-            up: [0],
-            down: ["wVR"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerLU",
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-corner.glb",
-        rotation: 180,
-        weight: 0.2,
-        "sockets": {
-            left: ["wHD"],
-            right: [0],
-            up: ["wVR"],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerRU",
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/wall-tiles/1x1-wall-corner.glb",
-        rotation: 270,
-        weight: 0.2,
-        "sockets": {
-            left: [0],
-            right: ["wHD"],
-            up: ["wVL"],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "bookcase",
-        asset: ["modules/canvas3dcompendium/assets/Tiles/Medieval%20Dungeon/Cobweb.glb","modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/floor-tiles/1x1-floor.glb"],
-        rotation: 180,
-        weight: 0.05,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: [0],
-            down: ["bookcase"],
-            top: [0],
-            bottom: [0],
-        }
-    },
-    {
-        id: "empty",
-        asset: "modules/baileywiki-3d/models/maps-modular/weathered-tileset/cracked/floor-tiles/1x1-floor.glb",
-        rotation: 0,
-        weight: 10,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: [0],
-            down: [0],
-            top: [0],
-            bottom: [0],
-        }
-    }
-]
-
-const sampleDataset1 = [
-    {
-        id: "RoadH",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadB_detail.glb",
-        rotation: 90,
-        weight: 1,
-        "sockets": {
-            left: ["wH"],
-            right: ["wH"],
-            up: [0],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadV",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadB_detail.glb",
-        rotation: 0,
-        weight: 1,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: ["wV"],
-            down: ["wV"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerRD",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadC.glb",
-        rotation: 0,
-        weight: 0.1,
-        "sockets": {
-            left: [0],
-            right: ["wH"],
-            up: [0],
-            down: ["wV"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerLD",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadC.glb",
-        rotation: 90,
-        weight: 0.1,
-        "sockets": {
-            left: ["wH"],
-            right: [0],
-            up: [0],
-            down: ["wV"],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerLU",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadC.glb",
-        rotation: 180,
-        weight: 0.1,
-        "sockets": {
-            left: ["wH"],
-            right: [0],
-            up: ["wV"],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "RoadCornerRU",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock_roadC.glb",
-        rotation: 270,
-        weight: 0.1,
-        "sockets": {
-            left: [0],
-            right: ["wH"],
-            up: ["wV"],
-            down: [0],
-            top: [0],
-            bottom: [0]
-        }
-    },
-    {
-        id: "empty",
-        asset: "modules/canvas3dcompendium/assets/Tiles/KayKitPack/Medieval%20Builder/tiles/square/square_rock.glb",
-        rotation: 0,
-        weight: 20,
-        "sockets": {
-            left: [0],
-            right: [0],
-            up: [0],
-            down: [0],
-            top: [0],
-            bottom: [0],
-        }
-    }
-]
