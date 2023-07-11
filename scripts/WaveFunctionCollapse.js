@@ -2,8 +2,9 @@
 
 
 export class WaveFunctionSolver{
-    constructor (dataset, width, height, depth) {
+    constructor (dataset, width, height, depth, padding) {
         this.dataset = dataset;
+        this.padding = padding;
         this.width = width;
         this.height = height;
         this.depth = depth;
@@ -14,11 +15,39 @@ export class WaveFunctionSolver{
     init() {
         this.grid = new Grid3(this.width, this.height, this.depth);
         this.grid.traverse((x, y, z, cell) => cell.possible = [...this.dataset]);
+        if (this.padding) {
+            const paddingBlock = {
+                id: this.padding,
+                asset: null,
+                rotation: 0,
+                weight: 0,
+                sockets: {
+                    left: [this.padding],
+                    right: [this.padding],
+                    up: [this.padding],
+                    down: [this.padding],
+                    top: [],
+                    bottom: []
+                }
+            }
+            for (let x = 0; x < this.width; x++) {
+                this.grid.get(x, 0, 0).value = paddingBlock;
+                this.grid.get(x, 0, 0).possible = [];
+                this.grid.get(x, this.height - 1, 0).value = paddingBlock;
+                this.grid.get(x, this.height - 1, 0).possible = [];
+            }
+            for (let y = 0; y < this.height; y++) {
+                this.grid.get(0, y, 0).value = paddingBlock;
+                this.grid.get(0, y, 0).possible = [];
+                this.grid.get(this.width - 1, y, 0).value = paddingBlock;
+                this.grid.get(this.width - 1, y, 0).possible = [];
+            }
+        }
         this.stack = [];
         this._buildQueue = [];
         this._first = true;
     }
-
+    
     learn(tiles = canvas.tiles.controlled) {
         this.dataset = [];
         for (const tile of tiles) {
@@ -156,14 +185,13 @@ export class WaveFunctionSolver{
             if (failed < this._failedTiles) {
                 this._failedTiles = failed;
                 this._bestBuildQueue = this._buildQueue;
-                this._bestResult = this.grid;
             }
             console.log("Attempt " + this._currentIteration + " failed " + failed + " tiles");
             if (failed === 0) break;
         }
         if (this._build) this.build();
         ui.notifications.info("Wave Function Collapse | Collapsed in " + this._currentIteration + " iterations")
-        return this._bestResult;
+        return this._bestBuildQueue;
     }
 
     iterate() {
@@ -251,6 +279,7 @@ export class WaveFunctionSolver{
             }
         }
         cell.value = tile;
+        this._buildQueue.push({x, y, z, ...cell});
         if (this._build) this.createTile(x, y, z, cell);
     }
 
