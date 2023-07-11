@@ -144,6 +144,7 @@ Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
                 name: "Dungeon",
                 padding: "empty",
                 dataset: [
+                    //Curve
                     {
                         "id": "Modular Dungeon | Curve",
                         "asset": "Modular Dungeon | Curve",
@@ -153,11 +154,68 @@ Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
                             "left": ["h"],
                             "right": ["empty"],
                             "up": ["empty"],
-                            "down": ["h"],
+                            "down": ["v"],
                             "top": [],
                             "bottom": []
                         }
                     },
+                    {
+                        "id": "Modular Dungeon | Curve2",
+                        "asset": "Modular Dungeon | Curve2",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["v"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Curve3",
+                        "asset": "Modular Dungeon | Curve3",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["v"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | CurveCarpet",
+                        "asset": "Modular Dungeon | CurveCarpet",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["empty"],
+                            "right": ["h"],
+                            "up": ["v"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | CurveStairs",
+                        "asset": "Modular Dungeon | CurveStairs",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["v"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    //Straight
                     {
                         "id": "Modular Dungeon | Straight",
                         "asset": "Modular Dungeon | Straight",
@@ -173,8 +231,79 @@ Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
                         }
                     },
                     {
+                        "id": "Modular Dungeon | Cave",
+                        "asset": "Modular Dungeon | Cave",
+                        "rotation": 0,
+                        "weight": 10,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["h"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Corridor",
+                        "asset": "Modular Dungeon | Corridor",
+                        "rotation": 0,
+                        "weight": 10,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["h"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | CorridorCarpet",
+                        "asset": "Modular Dungeon | CorridorCarpet",
+                        "rotation": 0,
+                        "weight": 10,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["h"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Crystals",
+                        "asset": "Modular Dungeon | Crystals",
+                        "rotation": 0,
+                        "weight": 10,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["h"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    //Bifurcation
+                    {
                         "id": "Modular Dungeon | Bifurcation",
                         "asset": "Modular Dungeon | Bifurcation",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["h"],
+                            "up": ["empty"],
+                            "down": ["v"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Library",
+                        "asset": "Modular Dungeon | Library",
                         "rotation": 0,
                         "weight": 1,
                         "sockets": {
@@ -203,6 +332,48 @@ Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
                     {
                         "id": "Modular Dungeon | End",
                         "asset": "Modular Dungeon | End",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | SkeletonsPit",
+                        "asset": "Modular Dungeon | SkeletonsPit",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Stairs",
+                        "asset": "Modular Dungeon | Stairs",
+                        "rotation": 0,
+                        "weight": 1,
+                        "sockets": {
+                            "left": ["h"],
+                            "right": ["empty"],
+                            "up": ["empty"],
+                            "down": ["empty"],
+                            "top": [],
+                            "bottom": []
+                        }
+                    },
+                    {
+                        "id": "Modular Dungeon | Hall",
+                        "asset": "Modular Dungeon | Hall",
                         "rotation": 0,
                         "weight": 1,
                         "sockets": {
