@@ -1,3 +1,486 @@
 import { MODULE_ID } from "./main.js";
 
-export function initConfig() { }
+export function initConfig() {
+
+    Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
+        wfc.registerPack("tda-modular-dungeon", {
+            name: "TDA Modular Dungeon",
+            computeRotated: true,
+            generators: [
+                {
+                    name: "Dungeon Complete",
+                    padding: "empty",
+                    dataset: [
+                        //Curve
+                        {
+                            "id": "Modular Dungeon | Curve",
+                            "asset": "Modular Dungeon | Curve",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Curve2",
+                            "asset": "Modular Dungeon | Curve2",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Curve3",
+                            "asset": "Modular Dungeon | Curve3",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | CurveCarpet",
+                            "asset": "Modular Dungeon | CurveCarpet",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["empty"],
+                                "right": ["h"],
+                                "up": ["v"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | CurveStairs",
+                            "asset": "Modular Dungeon | CurveStairs",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //Straight
+                        {
+                            "id": "Modular Dungeon | Straight",
+                            "asset": "Modular Dungeon | Straight",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Cave",
+                            "asset": "Modular Dungeon | Cave",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Corridor",
+                            "asset": "Modular Dungeon | Corridor",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | CorridorCarpet",
+                            "asset": "Modular Dungeon | CorridorCarpet",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Crystals",
+                            "asset": "Modular Dungeon | Crystals",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //Bifurcation
+                        {
+                            "id": "Modular Dungeon | Bifurcation",
+                            "asset": "Modular Dungeon | Bifurcation",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Library",
+                            "asset": "Modular Dungeon | Library",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Cross",
+                            "asset": "Modular Dungeon | Cross",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["v"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //End
+                        {
+                            "id": "Modular Dungeon | End",
+                            "asset": "Modular Dungeon | End",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | SkeletonsPit",
+                            "asset": "Modular Dungeon | SkeletonsPit",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Stairs",
+                            "asset": "Modular Dungeon | Stairs",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Hall",
+                            "asset": "Modular Dungeon | Hall",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                    ],
+                    iterations: 1000,
+                    blockSize: 11,
+                },
+                {
+                    name: "Dungeon No-Carpets",
+                    padding: "empty",
+                    dataset: [
+                        //Curve
+                        {
+                            "id": "Modular Dungeon | Curve",
+                            "asset": "Modular Dungeon | Curve",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Curve2",
+                            "asset": "Modular Dungeon | Curve2",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Curve3",
+                            "asset": "Modular Dungeon | Curve3",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | CurveStairs",
+                            "asset": "Modular Dungeon | CurveStairs",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //Straight
+                        {
+                            "id": "Modular Dungeon | Straight",
+                            "asset": "Modular Dungeon | Straight",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Cave",
+                            "asset": "Modular Dungeon | Cave",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Corridor",
+                            "asset": "Modular Dungeon | Corridor",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Crystals",
+                            "asset": "Modular Dungeon | Crystals",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //Bifurcation
+                        {
+                            "id": "Modular Dungeon | Bifurcation",
+                            "asset": "Modular Dungeon | Bifurcation",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Library",
+                            "asset": "Modular Dungeon | Library",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Cross",
+                            "asset": "Modular Dungeon | Cross",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["v"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //End
+                        {
+                            "id": "Modular Dungeon | End",
+                            "asset": "Modular Dungeon | End",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | SkeletonsPit",
+                            "asset": "Modular Dungeon | SkeletonsPit",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Stairs",
+                            "asset": "Modular Dungeon | Stairs",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        {
+                            "id": "Modular Dungeon | Hall",
+                            "asset": "Modular Dungeon | Hall",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                    ],
+                    iterations: 1000,
+                    blockSize: 11,
+                }
+            ],
+        });
+    });
+
+}

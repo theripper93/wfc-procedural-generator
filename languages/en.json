@@ -1,3 +1,5 @@
 {
-    "MODULE.hello": "hello"
+    "wfc-procedural-generator": {
+        "actors-missing": "One ore more prefabs are not imported in the Actor tab, please import all content from the selected package."
+    }
 }
