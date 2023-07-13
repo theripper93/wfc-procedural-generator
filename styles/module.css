@@ -1,0 +1,12 @@
+.window-app.wfc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.window-app.wfc ol li {
+  border: 1px inset rgba(102, 102, 102, 0.2588235294);
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+  background: var(--color-border-light-secondary);
+}/*# sourceMappingURL=module.css.map */

@@ -17,7 +17,7 @@ export class WFCApp extends Application{
         options.template = `modules/${MODULE_ID}/templates/WFCApp.hbs`;
         options.width = 500;
         options.height = 600;
-        options.title = "WFC";
+        options.title = game.i18n.localize(`${MODULE_ID}.title`);
         options.classes = ["wfc", "package-configuration"];
         options.resizable = true;
         return options;

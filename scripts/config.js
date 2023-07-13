@@ -10,6 +10,7 @@ export function initConfig() {
                 {
                     name: "Dungeon Complete",
                     padding: "empty",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     dataset: [
                         //Curve
                         {
@@ -259,6 +260,7 @@ export function initConfig() {
                 },
                 {
                     name: "Dungeon No-Carpets",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     padding: "empty",
                     dataset: [
                         //Curve

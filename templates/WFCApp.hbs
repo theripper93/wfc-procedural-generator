@@ -15,10 +15,13 @@
 
     <form class="categories flexcol" autocomplete="off">
         <div class="scrollable">
-            <ol style="list-style: none; margin: 0; padding: 0;">
+            <ol>
             {{#each currentPack.generators as |generator|}}
-            <li >
-                <button {{#unless generator.valid}}disabled data-tooltip="{{localize "wfc-procedural-generator.actors-missing"}}"{{/unless}} data-index="{{generator.index}}" class="generate">{{#unless generator.valid}}<i style="color: var(--color-level-warning);" class="fa-solid fa-triangle-exclamation"></i> {{/unless}}Generate - {{generator.name}} [{{generator.count}}]</button>
+            <li>
+                <h3>{{generator.name}}</h3>
+                <p class="notes">{{generator.description}}</p>
+                <p><strong>{{localize "wfc-procedural-generator.prefab-count"}}: </strong>{{generator.count}}</p>
+                <button {{#unless generator.valid}}disabled data-tooltip="{{localize "wfc-procedural-generator.actors-missing"}}"{{/unless}} data-index="{{generator.index}}" class="generate">{{#unless generator.valid}}<i style="color: var(--color-level-warning);" class="fa-solid fa-triangle-exclamation"></i> {{/unless}}<i class="fa-solid fa-dice"></i> {{localize "wfc-procedural-generator.generate"}}</button>
             </li>
             {{/each}}
             </ol>

@@ -25,6 +25,8 @@ export class WFCProceduralGenerator{
                     }
                 }
                 gen.dataset = newDataset;
+                gen.description = game.i18n.localize(gen.description);
+                gen.name = game.i18n.localize(gen.name);
             }
         }
         packData.id = packId;

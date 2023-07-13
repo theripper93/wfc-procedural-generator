@@ -1,5 +1,8 @@
 {
     "wfc-procedural-generator": {
-        "actors-missing": "One ore more prefabs are not imported in the Actor tab, please import all content from the selected package."
+        "title": "WFC Procedural Generator",
+        "actors-missing": "One ore more prefabs are not imported in the Actor tab, please import all content from the selected package.",
+        "prefab-count": "Tile Count",
+        "generate": "Generate"
     }
 }
