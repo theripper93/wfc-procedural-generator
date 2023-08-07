@@ -97,7 +97,7 @@ export class WFCProceduralGenerator{
         setTimeout(async () => {
             ui.notifications.clear?.();
             const updates = tokens.map((token, i) => {
-                const offset = rotationToOffset[toRotate[i].rotation];
+                const offset = isEven ? rotationToOffset[toRotate[i].rotation] : {x: 0, y: 0};
                 return {_id: token.id, rotation: toRotate[i].rotation, x: token.x + offset.x, y: token.y + offset.y};
             });
             for(const update of updates){
