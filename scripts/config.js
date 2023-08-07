@@ -483,6 +483,83 @@ export function initConfig() {
                 }
             ],
         });
+        wfc.registerPack("tda-modular-streets", {
+            name: "TDA Modular Streets",
+            computeRotated: true,
+            generators: [
+                {
+                    name: "Streets",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    padding: "empty",
+                    dataset: [
+                        //Curve
+                        {
+                            "id": "Modular Street | Day | Alley Curve",
+                            "asset": "Modular Street | Day | Alley Curve",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+
+                        //Straight
+                        {
+                            "id": "Modular Street | Day | Alley Straight",
+                            "asset": "Modular Street | Day | Alley Straight",
+                            "rotation": 0,
+                            "weight": 10,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                        //Bifurcation
+                        {
+                            "id": "Modular Street | Day | Alley Bifurcation",
+                            "asset": "Modular Street | Day | Alley Bifurcation",
+                            "rotation": 0,
+                            "weight": 1,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["h"],
+                                "up": ["empty"],
+                                "down": ["v"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                       
+                        //End
+                        {
+                            "id": "Modular Street | Day | End",
+                            "asset": "Modular Street | Day | End",
+                            "rotation": 0,
+                            "weight": 0.0001,
+                            "sockets": {
+                                "left": ["h"],
+                                "right": ["empty"],
+                                "up": ["empty"],
+                                "down": ["empty"],
+                                "top": [],
+                                "bottom": []
+                            }
+                        },
+                    ],
+                    iterations: 1000,
+                    blockSize: 8,
+                }
+            ],
+        });
     });
 
 }

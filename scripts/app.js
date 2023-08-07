@@ -1,9 +1,10 @@
 import {WFCLib} from "./main.js";
 import { MODULE_ID } from "./main.js";
 
-export class WFCApp extends Application{
+export class WFCApp extends FormApplication{
     constructor (packs) {
         super();
+        packs = packs ?? WFCLib.packs;
         this.packs = {};
         const sortedPacks = Object.values(packs).sort((a, b) => a.name.localeCompare(b.name)).map((pack) => pack.id);
         sortedPacks.forEach((packId) => {

@@ -59,14 +59,16 @@ export class WFCProceduralGenerator{
     async buildScene(bestResult, blockSize, padding) {
         const {sceneWidth, sceneHeight, size, sceneX, sceneY} = canvas.scene.dimensions;
         const toRotate = [];
-        const paddingOffset = padding ? blockSize*size : 0;
+        const paddingOffset = padding ? blockSize * size : 0;
+        const isEven = blockSize % 2 === 0;
+        const evenOffset = isEven ? size / 2 : 0;
         for (const block of bestResult) {
             if (!block.value?.asset) continue;
             const {x, y, z} = block;
             const tokenData = (await game.actors.getName(block.value.asset).getTokenData()).toObject();
             const position = {
-                x: (x * blockSize * size) + (blockSize * size / 2) -size/2 + sceneX -paddingOffset,
-                y: (y * blockSize * size) + (blockSize * size / 2) -size/2 + sceneY-paddingOffset,
+                x: (x * blockSize * size) + (blockSize * size / 2) -size/2 + sceneX -paddingOffset + evenOffset,
+                y: (y * blockSize * size) + (blockSize * size / 2) -size/2 + sceneY-paddingOffset - evenOffset,
             }
             tokenData.x = position.x;
             tokenData.y = position.y;
@@ -80,10 +82,19 @@ export class WFCProceduralGenerator{
             ui.notifications.clear?.();
             tokens.push(t[0]);
         }
+
+        const rotationToOffset = {
+            0: {x: 0, y: 0},
+            90: {x: 0, y: size},
+            180: {x: -size, y: size},
+            270: {x: -size, y: 0}
+        }
+
         setTimeout(async () => {
             ui.notifications.clear?.();
             const updates = tokens.map((token, i) => {
-                return {_id: token.id, rotation: toRotate[i].rotation};
+                const offset = rotationToOffset[toRotate[i].rotation];
+                return {_id: token.id, rotation: toRotate[i].rotation, x: token.x + offset.x, y: token.y + offset.y};
             });
             for(const update of updates){
                 await canvas.scene.updateEmbeddedDocuments("Token", [update]);
