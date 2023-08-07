@@ -38,7 +38,7 @@ export class WFCApp extends FormApplication{
                 generator.valid = WFCLib.validate(generator);
                 if (!generator.valid) {
                     const missing = WFCLib.getMissing(generator);
-                    generator.missing = missing.map((item) => item.asset).join(", ");
+                    generator.missing = Array.from(new Set(missing.map((item) => item.asset))).join(", ");
                 }
             });
         }
