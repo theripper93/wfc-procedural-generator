@@ -1,6 +1,10 @@
-import { MODULE_ID } from "./main.js";
+import {MODULE_ID} from "./main.js";
+
+const REGISTER_TEST_PACKS = false;
 
 export function initConfig() {
+
+    if(!REGISTER_TEST_PACKS) return;
 
     Hooks.on(`wfc-procedural-generatorInit`, (wfc) => {
         wfc.registerPack("tda-modular-dungeon", {
