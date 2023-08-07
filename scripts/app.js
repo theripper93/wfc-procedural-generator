@@ -36,6 +36,10 @@ export class WFCApp extends FormApplication{
                 generator.count = generator.dataset.length;
                 generator.index = index;
                 generator.valid = WFCLib.validate(generator);
+                if (!generator.valid) {
+                    const missing = WFCLib.getMissing(generator);
+                    generator.missing = missing.map((item) => item.asset).join(", ");
+                }
             });
         }
         return {packs, currentPack: this.packs[this.currentPack]};

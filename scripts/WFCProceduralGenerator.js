@@ -45,6 +45,10 @@ export class WFCProceduralGenerator{
         return data.dataset.every((item) => game.actors.getName(item.asset));
     }
 
+    getMissing(data) {
+        return data.dataset.filter((item) => !game.actors.getName(item.asset));
+    }
+
     generate(data) {
         const blockSize = data.blockSize;
         const {sceneWidth, sceneHeight, size} = canvas.scene.dimensions;
