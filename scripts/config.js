@@ -10,6 +10,9 @@ export function initConfig() {
         wfc.registerPack("tda-modular-dungeon", {
             name: "TDA Modular Dungeon",
             computeRotated: true,
+            socketRotationMapping: [
+                ["river_h", "river_v"]
+            ],
             generators: [
                 {
                     name: "Dungeon Complete",

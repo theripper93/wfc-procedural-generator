@@ -10,6 +10,8 @@ export class WFCProceduralGenerator{
 
     registerPack(packId, packData) {
         if (packData.computeRotated) {
+            packData.socketRotationMapping ??= [];
+            packData.socketRotationMapping.push(["h", "v"]);
             const angles = [90, 180, 270];
             for (const gen of packData.generators) {
                 const newDataset = [];
@@ -20,7 +22,7 @@ export class WFCProceduralGenerator{
                         const newItem = JSON.parse(JSON.stringify(item));
                         newItem.id = `${item.id} | ${angle}`;
                         newItem.rotation = angle;
-                        newItem.sockets = WFCProceduralGenerator.rotateSockets(newItem.sockets, angle);
+                        newItem.sockets = WFCProceduralGenerator.rotateSockets(newItem.sockets, angle, packData.socketRotationMapping);
                         newDataset.push(newItem);
                     }
                 }
@@ -106,23 +108,29 @@ export class WFCProceduralGenerator{
         }, 2000);
     }
 
-    static rotateSockets(original, rotation) {
+    static rotateSockets(original, rotation, socketRotationMapping) {
         const directions = ["up", "right", "down", "left"];
         const sockets = {};
         for (const [key, value] of Object.entries(original)) {
             if(key === "top" || key === "bottom") continue;
             const index = directions.indexOf(key);
             const destinationDirection = directions[(index + rotation / 90) % directions.length];
-            sockets[destinationDirection] = value.map((v) => rotation == 180 ? v : WFCProceduralGenerator.swapDirection(v));
+            sockets[destinationDirection] = value.map((v) => rotation == 180 ? v : WFCProceduralGenerator.swapDirection(v,socketRotationMapping));
         }
         sockets.top = original.top;
         sockets.bottom = original.bottom;
         return sockets;
     }
 
-    static swapDirection(direction) {
-        if (direction === "h") return "v";
-        if (direction === "v") return "h";
+    static swapDirection(direction, socketRotationMapping) {
+        const pair = socketRotationMapping.find((pair) => pair.includes(direction));
+        if (!pair) {            
+            if (direction === "h") return "v";
+            if (direction === "v") return "h";
+        } else {
+            if (direction === pair[0]) return pair[1];
+            if (direction === pair[1]) return pair[0];
+        }
         return direction;
     }
 
