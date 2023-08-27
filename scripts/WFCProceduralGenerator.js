@@ -51,7 +51,7 @@ export class WFCProceduralGenerator{
         return data.dataset.filter((item) => !game.actors.getName(item.asset));
     }
 
-    generate(data) {
+    async generate(data) {
         const blockSize = data.blockSize;
         const {sceneWidth, sceneHeight, size} = canvas.scene.dimensions;
         const pxBlockSize = blockSize * size;
@@ -59,7 +59,7 @@ export class WFCProceduralGenerator{
         const heightBlocks = Math.floor(sceneHeight / pxBlockSize);
         const solver = new WaveFunctionSolver(data.dataset, widthBlocks + (data.padding ? 2 : 0), heightBlocks + (data.padding ? 2 : 0), 1, data.padding);
         const bestResult = solver.collapse(false, data.iterations ?? 100);
-        this.buildScene(bestResult, blockSize, data.padding);
+        return await this.buildScene(bestResult, blockSize, data.padding);
     }
 
     async buildScene(bestResult, blockSize, padding) {

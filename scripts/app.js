@@ -45,6 +45,19 @@ export class WFCApp extends FormApplication{
         return {packs, currentPack: this.packs[this.currentPack]};
     }
 
+    _getHeaderButtons(...args) {
+        const buttons = super._getHeaderButtons(...args);
+        buttons.unshift({
+            label: game.i18n.localize(`${MODULE_ID}.settings.app.deleteAll`),
+            class: "clear",
+            icon: "fas fa-trash",
+            onclick: () => {
+                canvas.tokens.deleteAll()
+            }
+        });
+        return buttons;
+    }
+
     activateListeners(html) {
         html = html[0];
         html.querySelectorAll(".item").forEach((pack) => {
@@ -56,11 +69,13 @@ export class WFCApp extends FormApplication{
         html.querySelectorAll("button.generate").forEach((button) => {
             button.addEventListener("click", (event) => {
                 event.preventDefault();
+                this.minimize();
                 const packId = this.currentPack;
                 const generatorIndex = event.currentTarget.dataset.index;
                 const generator = this.packs[packId].generators[generatorIndex];
-                WFCLib.generate(generator);
-                this.close();
+                WFCLib.generate(generator).then(() => {
+                    this.maximize();
+                });
             });
         });
     }
