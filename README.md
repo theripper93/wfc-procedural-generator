@@ -1,6 +1,9 @@
 # WFC Prod Gen 2
 A wave form collapse based map generator
 
+# How
+Theripper is a genius, I'm not modifying that part of the logic. If you want to learn more about WFC check this out https://github.com/mxgmn/WaveFunctionCollapse 
+
 # Making packs
 Packs need to be created in two locations
 1. Foundry with Token Attacher
@@ -16,9 +19,10 @@ First, create a bunch of tiles in foundry. To do this:
 - Give the token a nice clear name so you can identify it later (if I was creating a set of underground dungeons, and this is a vertical corridor, I might name my token `underground-dungeon-v-1`).
 - Now repeat this process for each other permutation. You'll want at least one vertical (║), one horizonal (═), a corner (╔), and an end. 
 
-
 ## `config.js`
-
+Once you have your tiles, you need to add them to `config.js`.
+- Copy the `wfc.registerPack("degruchy-test", {`[...]`}`
+- ...
 
 
 ## Helpers
