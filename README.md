@@ -1,9 +1,6 @@
 # WFC Prod Gen 2
 A wave form collapse based map generator
 
-# How
-Dunno, theripper is a genius. I'll figure out how the generation works later.
-
 # Making packs
 Packs need to be created in two locations
 1. Foundry with Token Attacher
