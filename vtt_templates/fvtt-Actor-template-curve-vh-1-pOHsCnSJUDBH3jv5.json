@@ -1,0 +1,713 @@
+{
+  "name": "template-Curve-vh-1",
+  "type": "npc",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "dex": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "con": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "int": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "wis": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "cha": {
+        "value": 10,
+        "proficient": 0,
+        "max": null,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": null,
+        "calc": "default",
+        "formula": ""
+      },
+      "hp": {
+        "value": 10,
+        "max": 10,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": ""
+      },
+      "init": {
+        "ability": "",
+        "bonus": ""
+      },
+      "movement": {
+        "burrow": null,
+        "climb": null,
+        "fly": null,
+        "swim": null,
+        "walk": null,
+        "units": null,
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": null,
+        "blindsight": null,
+        "tremorsense": null,
+        "truesight": null,
+        "units": null,
+        "special": ""
+      },
+      "spellcasting": "int"
+    },
+    "details": {
+      "biography": {
+        "value": "",
+        "public": ""
+      },
+      "alignment": "",
+      "race": null,
+      "type": {
+        "value": "",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": 1,
+      "spellLevel": 0,
+      "source": {}
+    },
+    "traits": {
+      "size": "med",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": ""
+      },
+      "languages": {
+        "value": [],
+        "custom": ""
+      }
+    },
+    "currency": {
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "arc": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "his": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "rel": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      }
+    },
+    "tools": {},
+    "spells": {
+      "spell1": {
+        "value": 0,
+        "override": null
+      },
+      "spell2": {
+        "value": 0,
+        "override": null
+      },
+      "spell3": {
+        "value": 0,
+        "override": null
+      },
+      "spell4": {
+        "value": 0,
+        "override": null
+      },
+      "spell5": {
+        "value": 0,
+        "override": null
+      },
+      "spell6": {
+        "value": 0,
+        "override": null
+      },
+      "spell7": {
+        "value": 0,
+        "override": null
+      },
+      "spell8": {
+        "value": 0,
+        "override": null
+      },
+      "spell9": {
+        "value": 0,
+        "override": null
+      },
+      "pact": {
+        "value": 0,
+        "override": null
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "msak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rsak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "spell": {
+        "dc": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": false,
+        "initiative": null
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Test",
+    "displayName": 0,
+    "actorLink": false,
+    "appendNumber": false,
+    "prependAdjective": false,
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "color": null
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0,
+      "color": null
+    },
+    "detectionModes": [],
+    "flags": {
+      "token-attacher": {
+        "pos": {
+          "base_id": "M6PRVLat5PMQcE6Q",
+          "xy": {
+            "x": 2800,
+            "y": 1200
+          },
+          "center": {
+            "x": 2850,
+            "y": 1250
+          },
+          "rotation": 0,
+          "hidden": false,
+          "elevation": 0,
+          "width": 1,
+          "height": 1
+        },
+        "animate": false,
+        "prototypeAttached": {
+          "Tile": [
+            {
+              "texture": {
+                "src": null,
+                "scaleX": 1,
+                "scaleY": 1,
+                "tint": null,
+                "offsetX": 0,
+                "offsetY": 0,
+                "rotation": 0
+              },
+              "x": 2700,
+              "y": 1100,
+              "z": 5,
+              "width": 300,
+              "height": 300,
+              "rotation": 210,
+              "alpha": 1,
+              "overhead": false,
+              "roof": false,
+              "occlusion": {
+                "mode": 1,
+                "alpha": 0,
+                "radius": null
+              },
+              "video": {
+                "loop": true,
+                "autoplay": true,
+                "volume": 0
+              },
+              "hidden": false,
+              "locked": false,
+              "flags": {
+                "token-attacher": {
+                  "parent": "M6PRVLat5PMQcE6Q",
+                  "offset": {
+                    "x": -150,
+                    "y": -150,
+                    "rot": 210,
+                    "centerX": 0,
+                    "centerY": 0,
+                    "offRot": 210,
+                    "size": {
+                      "width": 300,
+                      "height": 300,
+                      "widthBase": 1,
+                      "heightBase": 1
+                    },
+                    "elevation": {
+                      "flags": {}
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "texture": {
+                "src": null,
+                "scaleX": 1,
+                "scaleY": 1,
+                "tint": null,
+                "offsetX": 0,
+                "offsetY": 0,
+                "rotation": 0
+              },
+              "x": 2800,
+              "y": 1300,
+              "z": 6,
+              "width": 100,
+              "height": 100,
+              "rotation": 0,
+              "alpha": 1,
+              "overhead": false,
+              "roof": false,
+              "occlusion": {
+                "mode": 1,
+                "alpha": 0,
+                "radius": null
+              },
+              "video": {
+                "loop": true,
+                "autoplay": true,
+                "volume": 0
+              },
+              "hidden": false,
+              "locked": false,
+              "flags": {
+                "token-attacher": {
+                  "parent": "M6PRVLat5PMQcE6Q",
+                  "offset": {
+                    "x": -50,
+                    "y": 50,
+                    "rot": 0,
+                    "centerX": 0,
+                    "centerY": 100,
+                    "offRot": 0,
+                    "size": {
+                      "width": 100,
+                      "height": 100,
+                      "widthBase": 1,
+                      "heightBase": 1
+                    },
+                    "elevation": {
+                      "flags": {}
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "texture": {
+                "src": null,
+                "scaleX": 1,
+                "scaleY": 1,
+                "tint": null,
+                "offsetX": 0,
+                "offsetY": 0,
+                "rotation": 0
+              },
+              "x": 2700,
+              "y": 1200,
+              "z": 6,
+              "width": 100,
+              "height": 100,
+              "rotation": 0,
+              "alpha": 1,
+              "overhead": false,
+              "roof": false,
+              "occlusion": {
+                "mode": 1,
+                "alpha": 0,
+                "radius": null
+              },
+              "video": {
+                "loop": true,
+                "autoplay": true,
+                "volume": 0
+              },
+              "hidden": false,
+              "locked": false,
+              "flags": {
+                "token-attacher": {
+                  "parent": "M6PRVLat5PMQcE6Q",
+                  "offset": {
+                    "x": -150,
+                    "y": -50,
+                    "rot": 0,
+                    "centerX": -100,
+                    "centerY": 0,
+                    "offRot": 0,
+                    "size": {
+                      "width": 100,
+                      "height": 100,
+                      "widthBase": 1,
+                      "heightBase": 1
+                    },
+                    "elevation": {
+                      "flags": {}
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "texture": {
+                "src": null,
+                "scaleX": 1,
+                "scaleY": 1,
+                "tint": null,
+                "offsetX": 0,
+                "offsetY": 0,
+                "rotation": 0
+              },
+              "x": 2800,
+              "y": 1200,
+              "z": 6,
+              "width": 100,
+              "height": 100,
+              "rotation": 0,
+              "alpha": 1,
+              "overhead": false,
+              "roof": false,
+              "occlusion": {
+                "mode": 1,
+                "alpha": 0,
+                "radius": null
+              },
+              "video": {
+                "loop": true,
+                "autoplay": true,
+                "volume": 0
+              },
+              "hidden": false,
+              "locked": false,
+              "flags": {
+                "token-attacher": {
+                  "parent": "M6PRVLat5PMQcE6Q",
+                  "offset": {
+                    "x": -50,
+                    "y": -50,
+                    "rot": 0,
+                    "centerX": 0,
+                    "centerY": 0,
+                    "offRot": 0,
+                    "size": {
+                      "width": 100,
+                      "height": 100,
+                      "widthBase": 1,
+                      "heightBase": 1
+                    },
+                    "elevation": {
+                      "flags": {}
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "grid": {
+          "size": 100,
+          "w": 100,
+          "h": 100
+        }
+      }
+    },
+    "randomImg": false
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {},
+    "exportSource": {
+      "world": "test2",
+      "system": "dnd5e",
+      "coreVersion": "11.315",
+      "systemVersion": "2.4.1"
+    }
+  },
+  "_stats": {
+    "systemId": "dnd5e",
+    "systemVersion": "2.4.1",
+    "coreVersion": "11.315",
+    "createdTime": 1703353806678,
+    "modifiedTime": 1703364262182,
+    "lastModifiedBy": "0K2Pih8ei2QDZgF9"
+  }
+}
