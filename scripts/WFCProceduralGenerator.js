@@ -1,9 +1,9 @@
-import {WFCApp} from "./app.js";
-import {WaveFunctionSolver} from "./WaveFunctionCollapse.js";
+import { WFCApp } from "./app.js";
+import { WaveFunctionSolver } from "./WaveFunctionCollapse.js";
 
-export class WFCProceduralGenerator{
+export class WFCProceduralGenerator {
 
-    constructor(){
+    constructor() {
         this.packs = {};
         this.WaveFunctionSolver = WaveFunctionSolver;
     }
@@ -13,10 +13,12 @@ export class WFCProceduralGenerator{
             packData.socketRotationMapping ??= [];
             packData.socketRotationMapping.push(["h", "v"]);
             const angles = [90, 180, 270];
+            console.log("[WFCProceduralGenerator] Iterating over generators");
             for (const gen of packData.generators) {
+                console.log("[WFCProceduralGenerator] generators", gen);
                 const newDataset = [];
                 for (const item of gen.dataset) {
-                    
+
                     newDataset.push(item);
                     for (const angle of angles) {
                         const newItem = JSON.parse(JSON.stringify(item));
@@ -40,7 +42,7 @@ export class WFCProceduralGenerator{
     }
 
     learn() {
-        
+
     }
 
     validate(data) {
@@ -53,7 +55,7 @@ export class WFCProceduralGenerator{
 
     async generate(data) {
         const blockSize = data.blockSize;
-        const {sceneWidth, sceneHeight, size} = canvas.scene.dimensions;
+        const { sceneWidth, sceneHeight, size } = canvas.scene.dimensions;
         const pxBlockSize = blockSize * size;
         const widthBlocks = Math.floor(sceneWidth / pxBlockSize);
         const heightBlocks = Math.floor(sceneHeight / pxBlockSize);
@@ -63,25 +65,25 @@ export class WFCProceduralGenerator{
     }
 
     async buildScene(bestResult, blockSize, padding) {
-        const {sceneWidth, sceneHeight, size, sceneX, sceneY} = canvas.scene.dimensions;
+        const { sceneWidth, sceneHeight, size, sceneX, sceneY } = canvas.scene.dimensions;
         const toRotate = [];
         const paddingOffset = padding ? blockSize * size : 0;
         const isEven = blockSize % 2 === 0;
         const evenOffset = isEven ? size / 2 : 0;
         for (const block of bestResult) {
             if (!block.value?.asset) continue;
-            const {x, y, z} = block;
+            const { x, y, z } = block;
             const tokenData = (await game.actors.getName(block.value.asset).getTokenData()).toObject();
             const position = {
-                x: (x * blockSize * size) + (blockSize * size / 2) -size/2 + sceneX -paddingOffset + evenOffset,
-                y: (y * blockSize * size) + (blockSize * size / 2) -size/2 + sceneY-paddingOffset - evenOffset,
+                x: (x * blockSize * size) + (blockSize * size / 2) - size / 2 + sceneX - paddingOffset + evenOffset,
+                y: (y * blockSize * size) + (blockSize * size / 2) - size / 2 + sceneY - paddingOffset - evenOffset,
             }
             tokenData.x = position.x;
             tokenData.y = position.y;
             //tokenData.rotation = block.value.rotation;
-            toRotate.push({td: tokenData, rotation: block.value.rotation});
+            toRotate.push({ td: tokenData, rotation: block.value.rotation });
         }
-        const toCreate = toRotate.map(({td}) => td);
+        const toCreate = toRotate.map(({ td }) => td);
         const tokens = [];
         for (const tokenData of toCreate) {
             const t = await canvas.scene.createEmbeddedDocuments("Token", [tokenData])
@@ -90,19 +92,19 @@ export class WFCProceduralGenerator{
         }
 
         const rotationToOffset = {
-            0: {x: 0, y: 0},
-            90: {x: 0, y: size},
-            180: {x: -size, y: size},
-            270: {x: -size, y: 0}
+            0: { x: 0, y: 0 },
+            90: { x: 0, y: size },
+            180: { x: -size, y: size },
+            270: { x: -size, y: 0 }
         }
 
         setTimeout(async () => {
             ui.notifications.clear?.();
             const updates = tokens.map((token, i) => {
-                const offset = isEven ? rotationToOffset[toRotate[i].rotation] : {x: 0, y: 0};
-                return {_id: token.id, rotation: toRotate[i].rotation, x: token.x + offset.x, y: token.y + offset.y};
+                const offset = isEven ? rotationToOffset[toRotate[i].rotation] : { x: 0, y: 0 };
+                return { _id: token.id, rotation: toRotate[i].rotation, x: token.x + offset.x, y: token.y + offset.y };
             });
-            for(const update of updates){
+            for (const update of updates) {
                 await canvas.scene.updateEmbeddedDocuments("Token", [update]);
             }
         }, 2000);
@@ -112,10 +114,10 @@ export class WFCProceduralGenerator{
         const directions = ["up", "right", "down", "left"];
         const sockets = {};
         for (const [key, value] of Object.entries(original)) {
-            if(key === "top" || key === "bottom") continue;
+            if (key === "top" || key === "bottom") continue;
             const index = directions.indexOf(key);
             const destinationDirection = directions[(index + rotation / 90) % directions.length];
-            sockets[destinationDirection] = value.map((v) => rotation == 180 ? v : WFCProceduralGenerator.swapDirection(v,socketRotationMapping));
+            sockets[destinationDirection] = value.map((v) => rotation == 180 ? v : WFCProceduralGenerator.swapDirection(v, socketRotationMapping));
         }
         sockets.top = original.top;
         sockets.bottom = original.bottom;
@@ -124,7 +126,7 @@ export class WFCProceduralGenerator{
 
     static swapDirection(direction, socketRotationMapping) {
         const pair = socketRotationMapping.find((pair) => pair.includes(direction));
-        if (!pair) {            
+        if (!pair) {
             if (direction === "h") return "v";
             if (direction === "v") return "h";
         } else {

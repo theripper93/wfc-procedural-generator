@@ -1,11 +1,11 @@
 {
-    "title": "Library: Wave Function Collapse",
+    "title": "Library: Wave Function Collapse 2",
     "description": "desc",
-    "id": "wfc-procedural-generator",
-    "version": "1.0",
+    "id": "wfc-procedural-generator-2",
+    "version": "1.1",
     "authors": [
       {
-        "name": "theripper93",
+        "name": "theripper93+degruchy",
         "email": "tsplab@gmail.com",
         "url": "https://www.patreon.com/theripper93"
       }
@@ -57,9 +57,6 @@
     ],
     "packs": [
     ],
-    "url": "https://github.com/theripper93/Levels",
-    "manifest": "https://github.com/theripper93/Levels/releases/latest/download/module.json",
-    "download": "https://github.com/theripper93/Levels/releases/download/0.9.7.3/module.zip",
     "relationships": {
       "requires": [
         {

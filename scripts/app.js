@@ -1,8 +1,8 @@
-import {WFCLib} from "./main.js";
+import { WFCLib } from "./main.js";
 import { MODULE_ID } from "./main.js";
 
-export class WFCApp extends FormApplication{
-    constructor (packs) {
+export class WFCApp extends FormApplication {
+    constructor(packs) {
         super();
         packs = packs ?? WFCLib.packs;
         this.packs = {};
@@ -42,7 +42,7 @@ export class WFCApp extends FormApplication{
                 }
             });
         }
-        return {packs, currentPack: this.packs[this.currentPack]};
+        return { packs, currentPack: this.packs[this.currentPack] };
     }
 
     _getHeaderButtons(...args) {
@@ -73,6 +73,7 @@ export class WFCApp extends FormApplication{
                 const packId = this.currentPack;
                 const generatorIndex = event.currentTarget.dataset.index;
                 const generator = this.packs[packId].generators[generatorIndex];
+                console.log({ generator });
                 WFCLib.generate(generator).then(() => {
                     this.maximize();
                 });

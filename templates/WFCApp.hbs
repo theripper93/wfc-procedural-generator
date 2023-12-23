@@ -1,7 +1,9 @@
 <div class="flexrow">
     <aside class="sidebar flexcol">
         <div class="entry-filter form-group">
-            <input name="filter" type="search" placeholder="{{localize "PACKAGECONFIG.Filter"}}" value=""/>
+            This has been modified2
+            ({{currentPack.generators.length}})
+            <input name="filter" type="search" placeholder="{{localize " PACKAGECONFIG.Filter"}}" value="" />
         </div>
         <nav class="tabs" aria-label="{{localize 'PACKAGECONFIG.NavLabel'}}">
             {{#each packs as |pack|}}
@@ -15,15 +17,21 @@
 
     <form class="categories flexcol" autocomplete="off">
         <div class="scrollable">
+            Showing {{currentPack.generators.length}} of {{currentPack.count}} generators
             <ol>
-            {{#each currentPack.generators as |generator|}}
-            <li>
-                <h3>{{generator.name}}</h3>
-                <p class="notes">{{generator.description}}</p>
-                <p><strong>{{localize "wfc-procedural-generator.prefab-count"}}: </strong>{{generator.count}}</p>
-                <button {{#unless generator.valid}}disabled data-tooltip="{{localize "wfc-procedural-generator.actors-missing"}}<hr>{{generator.missing}}"{{/unless}} data-index="{{generator.index}}" class="generate">{{#unless generator.valid}}<i style="color: var(--color-level-warning);" class="fa-solid fa-triangle-exclamation"></i> {{/unless}}<i class="fa-solid fa-dice"></i> {{localize "wfc-procedural-generator.generate"}}</button>
-            </li>
-            {{/each}}
+                {{#each currentPack.generators as |generator|}}
+                <li>
+                    <h3>{{generator.name}}</h3>
+                    <p class="notes">{{generator.description}}</p>
+                    <p><strong>{{localize "wfc-procedural-generator-2.prefab-count"}}: </strong>{{generator.count}}</p>
+                    <button {{#unless generator.valid}}disabled data-tooltip="{{localize "
+                        wfc-procedural-generator-2.actors-missing"}}<hr>{{generator.missing}}"{{/unless}}
+                        data-index="{{generator.index}}" class="generate">{{#unless generator.valid}}<i
+                            style="color: var(--color-level-warning);" class="fa-solid fa-triangle-exclamation"></i>
+                        {{/unless}}<i class="fa-solid fa-dice"></i> {{localize
+                        "wfc-procedural-generator-2.generate"}}</button>
+                </li>
+                {{/each}}
             </ol>
         </div>
     </form>
