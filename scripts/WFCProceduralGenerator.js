@@ -115,9 +115,9 @@ export class WFCProceduralGenerator {
                     let { x, y } = toRotate[i].centreOffset;
                     let rotationOffsets = {
                         0: { x: x, y: y },
-                        90: { x: -x, y: y },//{ x: size, y: 0 },
-                        180: { x: -x, y: -y },//{ x: size, y: size },
-                        270: { x: x, y: -y },//{ x: 0, y: size }
+                        90: { x: -x, y: y },
+                        180: { x: -x, y: -y },
+                        270: { x: x, y: -y },
                     }
                     offset.x += rotationOffsets[toRotate[i].rotation].x;
                     offset.y += rotationOffsets[toRotate[i].rotation].y;
