@@ -15,46 +15,76 @@ export function initConfig() {
             generators: [
                 {
                     name: "Test Pack",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    description: "A simple test pack.",
                     padding: "empty",
                     dataset: [
                         //Curve
-                        {
-                            "id": "template-Curve-vh-1",
-                            "asset": "template-Curve-vh-1",
-                            "rotation": 0,
-                            "weight": 1,
-                            "sockets": {
-                                "left": ["h"],
-                                "right": ["empty"],
-                                "up": ["empty"],
-                                "down": ["v"],
-                                "top": [],
-                                "bottom": []
-                            }
-                        },
+                        // {
+                        //     "id": "template-Curve-vh-1",
+                        //     "asset": "template-Curve-vh-1",
+                        //     "rotation": 0,
+                        //     "weight": 1,
+                        //     "sockets": {
+                        //         "left": ["h"],
+                        //         "right": ["empty"],
+                        //         "up": ["empty"],
+                        //         "down": ["v"],
+                        //         "top": [],
+                        //         "bottom": []
+                        //     }
+                        // },
 
                         //Straight
-                        {
-                            "id": "template-Straight-v-1",
-                            "asset": "template-Straight-v-1",
-                            "rotation": 0,
-                            "weight": 10,
-                            "sockets": {
-                                "left": ["h"],
-                                "right": ["h"],
-                                "up": ["empty"],
-                                "down": ["empty"],
-                                "top": [],
-                                "bottom": []
-                            }
-                        },
+                        // {
+                        //     "id": "template-Straight-v-1",
+                        //     "asset": "template-Straight-v-1",
+                        //     "rotation": 0,
+                        //     "weight": 10,
+                        //     "sockets": {
+                        //         "left": ["empty"],
+                        //         "right": ["empty"],
+                        //         "up": ["v"],
+                        //         "down": ["v"],
+                        //         "top": [],
+                        //         "bottom": []
+                        //     }
+                        // },
                         //Bifurcation
+                        // {
+                        //     "id": "template-Bifurcation-v-1",
+                        //     "asset": "template-Bifurcation-v-1",
+                        //     "rotation": 0,
+                        //     "weight": 1,
+                        //     "sockets": {
+                        //         "left": ["h"],
+                        //         "right": ["h"],
+                        //         "up": ["v"],
+                        //         "down": ["v"],
+                        //         "top": [],
+                        //         "bottom": []
+                        //     }
+                        // },
+
+                        //End
+                        // {
+                        //     "id": "template-End-v-1",
+                        //     "asset": "template-End-v-1",
+                        //     "rotation": 0,
+                        //     "weight": 0.001,
+                        //     "sockets": {
+                        //         "left": ["empty"],
+                        //         "right": ["empty"],
+                        //         "up": ["empty"],
+                        //         "down": ["v"],
+                        //         "top": [],
+                        //         "bottom": []
+                        //     }
+                        // },
                         {
-                            "id": "template-Bifurcation-v-1",
-                            "asset": "template-Bifurcation-v-1",
+                            "id": "template-Offset-vh-1",
+                            "asset": "template-Offset-vh-1",
                             "rotation": 0,
-                            "weight": 1,
+                            "weight": 2,
                             "sockets": {
                                 "left": ["h"],
                                 "right": ["h"],
@@ -64,24 +94,8 @@ export function initConfig() {
                                 "bottom": []
                             }
                         },
-
-                        //End
-                        {
-                            "id": "template-End-v-1",
-                            "asset": "template-End-v-1",
-                            "rotation": 0,
-                            "weight": 0.1,
-                            "sockets": {
-                                "left": ["empty"],
-                                "right": ["empty"],
-                                "up": ["empty"],
-                                "down": ["v"],
-                                "top": [],
-                                "bottom": []
-                            }
-                        },
                     ],
-                    iterations: 1000,
+                    iterations: 10,
                     blockSize: 3,
                 }
             ],

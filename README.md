@@ -22,9 +22,12 @@ First, create a bunch of tiles in foundry. To do this:
 ## `config.js`
 Once you have your tiles, you need to add them to `config.js`.
 - Copy the `wfc.registerPack("degruchy-test", {`[...]`}`
-- ...
+- for each tile, insert a relevant section with the sockets defined and matching up
 
 
 ## Helpers
 ### Open settings macro
 `new (game.settings.menus.get("wfc-procedural-generator-2.app").type)().render(true)`
+
+### Import a character template
+`tokenAttacher.importFromJSON(<some json>)`

@@ -16,8 +16,8 @@ export class WFCApp extends FormApplication {
     static get defaultOptions() {
         const options = super.defaultOptions;
         options.template = `modules/${MODULE_ID}/templates/WFCApp.hbs`;
-        options.width = 500;
-        options.height = 600;
+        options.width = "50vw";
+        options.height = "80vh";
         options.title = game.i18n.localize(`${MODULE_ID}.title`);
         options.classes = ["wfc", "package-configuration"];
         options.resizable = true;
