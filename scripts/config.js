@@ -22,7 +22,7 @@ export function initConfig() {
                         {
                             "id": "template-Curve-vh-1",
                             "asset": "template-Curve-vh-1",
-                            "centreOffset": { "x": 100, "y": 100, "z": 0 },
+                            "centreOffset": { "x": -100, "y": -100, "z": 0 },
                             "rotation": 0,
                             "weight": 1,
                             "sockets": {
