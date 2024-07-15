@@ -71,7 +71,7 @@ export class WFCProceduralGenerator{
         for (const block of bestResult) {
             if (!block.value?.asset) continue;
             const {x, y, z} = block;
-            const tokenData = (await game.actors.getName(block.value.asset).getTokenData()).toObject();
+            const tokenData = (await game.actors.getName(block.value.asset).getTokenDocument()).toObject();
             const position = {
                 x: (x * blockSize * size) + (blockSize * size / 2) -size/2 + sceneX -paddingOffset + evenOffset,
                 y: (y * blockSize * size) + (blockSize * size / 2) -size/2 + sceneY-paddingOffset - evenOffset,
