@@ -1,8 +1,1 @@
-# Module Name
-desc
-
-## Install
-
-```copy
-https://github.com/theripper93/wfc-procedural-generator/releases/latest/download/module.json
-```
+This module is no longer supported as of V13, if you wish to take over DM me on discord for the transfer, the license is open source https://theripper93.com/
